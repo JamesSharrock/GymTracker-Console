@@ -1,5 +1,5 @@
-/Learning_Demo/bin/Debug/net9.0
-/Learning_Demo/obj
+bin
+obj
 /.vscode
 /.Logs
 *.json
