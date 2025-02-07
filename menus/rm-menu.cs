@@ -5,25 +5,25 @@ namespace WeightLiftingConsoleApp.Menus{
     class RMMenu{
     
         public static void displayRMMenu(){
-            HelperLib.colourMessageLine("yellow", "\n\nOne Rep Max Mode -");
-            HelperLib.colourMessageLine("blue", new string('-', 20));
+            HelperLib.colourMessage("yellow", "\n\nOne Rep Max Mode -");
+            HelperLib.colourMessage("blue", new string('-', 20));
             displayRMInput();
             MainMenu.displayMainMenu();
             MainMenu.displayMainInput();
         }
 
         public static void displayRMInput(){
-            HelperLib.colourMessage("cyan", "Enter Weight, Reps: ");
+            HelperLib.colourMessage("cyan", "Enter Weight, Reps: ", false);
             string[] values = Console.ReadLine().Split(',');
             try{
                 double weight = double.Parse(values[0]);
                 int reps = Int32.Parse(values[1]);
                 double oneRepMax = CalculateOneRM(weight, reps);
-                HelperLib.colourMessageLine("green", $"One Rep Max: {oneRepMax}(KG)");
-                HelperLib.colourMessageLine("blue", new string('-', 20));
+                HelperLib.colourMessage("green", $"One Rep Max: {oneRepMax}(KG)");
+                HelperLib.colourMessage("blue", new string('-', 20));
             }
             catch (Exception){ //Validate can be correcly converted
-                HelperLib.colourMessageLine("red", "Invalid input format");
+                HelperLib.colourMessage("red", "Invalid input format");
                 displayRMInput();
             }    
         }

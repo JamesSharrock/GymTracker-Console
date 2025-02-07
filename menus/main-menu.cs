@@ -5,26 +5,26 @@ namespace WeightLiftingConsoleApp.Menus{
     class MainMenu{
     
         public static void Intro(){
-            HelperLib.colourMessageLine("blue", "Gym Tracker Console App");
+            HelperLib.colourMessage("blue", "Gym Tracker Console App");
             displayMainMenu();
             displayMainInput();
         }
 
         public static void displayMainMenu(){
-            HelperLib.colourMessageLine("yellow", "\n\nMenu -");
-            HelperLib.colourMessageLine("blue", new string('-', 20));
-            HelperLib.colourMessageLine("yellow", "(1) - Log a Gym Session");
-            HelperLib.colourMessageLine("yellow", "(2) - Calculate Barbell Weights");
-            HelperLib.colourMessageLine("yellow", "(3) - Calculate 1RM");
-            HelperLib.colourMessageLine("yellow", "(0) - Quit");
-            HelperLib.colourMessageLine("blue", new string('-', 20));
+            HelperLib.colourMessage("yellow", "\n\nMenu -");
+            HelperLib.colourMessage("blue", new string('-', 20));
+            HelperLib.colourMessage("yellow", "(1) - Log a Gym Session");
+            HelperLib.colourMessage("yellow", "(2) - Calculate Barbell Weights");
+            HelperLib.colourMessage("yellow", "(3) - Calculate 1RM");
+            HelperLib.colourMessage("yellow", "(0) - Quit");
+            HelperLib.colourMessage("blue", new string('-', 20));
         }
 
         public static void displayMainInput(){
-            HelperLib.colourMessage("cyan", "Select a Mode: ");
+            HelperLib.colourMessage("cyan", "Select a Mode: ", false);
             string ?mode = Console.ReadLine();
             if(mode == "0"){
-                HelperLib.colourMessageLine("red", "Exiting the program");
+                HelperLib.colourMessage("red", "Exiting the program");
                 Environment.Exit(0);
             }
             switch(mode){
@@ -38,7 +38,7 @@ namespace WeightLiftingConsoleApp.Menus{
                     RMMenu.displayRMMenu();
                     break;
                 default:
-                    HelperLib.colourMessageLine("red", "Invalid selection. Please try again.");
+                    HelperLib.colourMessage("red", "Invalid selection. Please try again.");
                     displayMainInput();
                     break;
             }

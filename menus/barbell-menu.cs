@@ -5,28 +5,28 @@ namespace WeightLiftingConsoleApp.Menus{
     class BarbellMenu{
     
         public static void displayBarbellMenu(){
-            HelperLib.colourMessageLine("yellow", "\n\nBarbell Weight Mode -");
-            HelperLib.colourMessageLine("blue", new string('-', 20));
+            HelperLib.colourMessage("yellow", "\n\nBarbell Weight Mode -");
+            HelperLib.colourMessage("blue", new string('-', 20));
             displayBarbellInput();
             MainMenu.displayMainMenu();
             MainMenu.displayMainInput();
         }
 
         public static void displayBarbellInput(){
-            HelperLib.colourMessage("cyan", "Enter Weight: ");
+            HelperLib.colourMessage("cyan", "Enter Weight: ", false);
             string input = Console.ReadLine();
 
             try{
                 double weight = double.Parse(input);
                 List<string> results = CalculatePlates(weight);
-                HelperLib.colourMessage("green", "Weight Each Side: ");
+                HelperLib.colourMessage("green", "Weight Each Side: ", false);
                 foreach (string result in results){
-                    HelperLib.colourMessage("green", $"\t {result}");
+                    HelperLib.colourMessage("green", $"\t {result}", false);
                 }
-                HelperLib.colourMessageLine("blue", "\n"+new string('-', 20));
+                HelperLib.colourMessage("blue", "\n"+new string('-', 20));
             }
             catch (FormatException){ //Validate can be correcly converted
-                HelperLib.colourMessageLine("red", "Invalid input format");
+                HelperLib.colourMessage("red", "Invalid input format");
                 displayBarbellInput();
             }             
         }

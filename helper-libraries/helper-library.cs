@@ -5,15 +5,13 @@ using System.Security.Cryptography.X509Certificates;
 namespace WeightLiftingConsoleApp.Helper{
     public static class HelperLib{
         
-        public static void colourMessageLine(string colour, string message){
+        public static void colourMessage(string colour, string message, bool line = true){
             changeColour(colour);
-            Console.WriteLine(message);
-            Console.ForegroundColor = ConsoleColor.White;
-        }
-
-        public static void colourMessage(string colour, string message){
-            changeColour(colour);
-            Console.Write(message);
+            if (line){
+                Console.WriteLine(message);
+            } else {
+                Console.Write(message);
+            }
             Console.ForegroundColor = ConsoleColor.White;
         }
 

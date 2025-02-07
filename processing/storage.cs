@@ -29,7 +29,7 @@ namespace WeightLiftingConsoleApp.Storage{
             var options = new JsonSerializerOptions { WriteIndented = true };
             string jsonString = JsonSerializer.Serialize(log, options);
             File.WriteAllText(filePath, jsonString);
-            HelperLib.colourMessageLine("green", "File saved successfully");
+            HelperLib.colourMessage("green", "File saved successfully");
         }
 
         public Log Load(DateTime date){
@@ -58,11 +58,11 @@ namespace WeightLiftingConsoleApp.Storage{
              if (files.Length > 0){
                  foreach (string filePath in files){
                      File.Delete(filePath);
-                     HelperLib.colourMessageLine("green", "File deleted successfully");
+                     HelperLib.colourMessage("green", "File deleted successfully");
                  }
              }
              else{
-                 HelperLib.colourMessageLine("red", "No file found at this date");
+                 HelperLib.colourMessage("red", "No file found at this date");
              }
         }
 

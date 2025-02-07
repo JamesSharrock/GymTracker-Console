@@ -20,13 +20,13 @@ namespace WeightLiftingConsoleApp.Classes{
 
         public void printLog(){
             string printDate = date.ToString("dd-MM-yyyy");
-            HelperLib.colourMessageLine("blue", new string('-', 20));
-            HelperLib.colourMessageLine("green", "\n"+new string('-', 20));
-            HelperLib.colourMessageLine("green", $"Workout: {title} {printDate}");
+            HelperLib.colourMessage("blue", new string('-', 20), true);
+            HelperLib.colourMessage("green", "\n"+new string('-', 20));
+            HelperLib.colourMessage("green", $"Workout: {title} {printDate}");
             foreach (Exercise e in exercises){
-                HelperLib.colourMessageLine("green", $"* {e.name}, {e.weight}(KG), {e.sets} sets, {e.reps} reps");
+                HelperLib.colourMessage("green", $"* {e.name}, {e.weight}(KG), {e.sets} sets, {e.reps} reps");
             }
-            HelperLib.colourMessageLine("green", new string('-', 20));
+            HelperLib.colourMessage("green", new string('-', 20));
         }
 
         

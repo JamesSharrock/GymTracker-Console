@@ -9,18 +9,18 @@ namespace WeightLiftingConsoleApp.Menus{
     class LogMenu{
     
         public static void displayLogMenu(){
-            HelperLib.colourMessageLine("yellow", "\n\nLogging Mode -");
-            HelperLib.colourMessageLine("blue", new string('-', 20));
-            HelperLib.colourMessageLine("yellow", "(1) - New Log");
-            HelperLib.colourMessageLine("yellow", "(2) - Load Log");
-            HelperLib.colourMessageLine("yellow", "(3) - Delete Log");
-            HelperLib.colourMessageLine("yellow", "(0) - Main Menu");
-            HelperLib.colourMessageLine("blue", new string('-', 20));
+            HelperLib.colourMessage("yellow", "\n\nLogging Mode -");
+            HelperLib.colourMessage("blue", new string('-', 20));
+            HelperLib.colourMessage("yellow", "(1) - New Log");
+            HelperLib.colourMessage("yellow", "(2) - Load Log");
+            HelperLib.colourMessage("yellow", "(3) - Delete Log");
+            HelperLib.colourMessage("yellow", "(0) - Main Menu");
+            HelperLib.colourMessage("blue", new string('-', 20));
             displayLogInput();
         }
 
         public static void displayLogInput(){
-            HelperLib.colourMessage("cyan", "Select a Mode: ");
+            HelperLib.colourMessage("cyan", "Select a Mode: ", false);
             string ?mode = Console.ReadLine();
             if(mode == "0"){
                 MainMenu.displayMainMenu();
@@ -44,7 +44,7 @@ namespace WeightLiftingConsoleApp.Menus{
                     displayLogInput();
                     break;
                 default:
-                    HelperLib.colourMessageLine("red", "Invalid selection. Please try again.");
+                    HelperLib.colourMessage("red", "Invalid selection. Please try again.");
                     displayLogInput();
                     break;        
             }
@@ -53,8 +53,8 @@ namespace WeightLiftingConsoleApp.Menus{
 
         /* ------------- New Log --------------*/
         public static void newLog(){
-            HelperLib.colourMessageLine("yellow", "\n\nNew Log - ");
-            HelperLib.colourMessageLine("blue", new string('-', 20));
+            HelperLib.colourMessage("yellow", "\n\nNew Log - ");
+            HelperLib.colourMessage("blue", new string('-', 20));
             string title = getTitle();
             DateTime date = getDate();
             List<Exercise> exercises = getExercises();
@@ -65,35 +65,32 @@ namespace WeightLiftingConsoleApp.Menus{
         }
         /* ------------- Load Log --------------*/
         public static void loadLog(){
-            HelperLib.colourMessageLine("yellow", "\n\nLoad Log - ");
-            HelperLib.colourMessageLine("blue", new string('-', 20));
+            HelperLib.colourMessage("yellow", "\n\nLoad Log - ");
+            HelperLib.colourMessage("blue", new string('-', 20));
             DateTime date = getDate();
             Store storage = new Store();
             try{
                 Log log = storage.Load(date);
                 log.printLog();
             }catch(FileNotFoundException ex){
-                HelperLib.colourMessageLine("red", ex.Message);
+                HelperLib.colourMessage("red", ex.Message);
             }
             
         }
         /* ------------- Delete Log --------------*/
         public static void deleteLog(){
-            HelperLib.colourMessageLine("yellow", "\n\nDelete Log - ");
-            HelperLib.colourMessageLine("blue", new string('-', 20));
+            HelperLib.colourMessage("yellow", "\n\nDelete Log - ");
+            HelperLib.colourMessage("blue", new string('-', 20));
             DateTime date = getDate();
             Store storage = new Store();
             try{
                 Log log = storage.Load(date);
                 log.printLog();
                 storage.Delete(date);
+                HelperLib.colourMessage("red", "The log has been deleted");
             }catch(FileNotFoundException ex){
-                HelperLib.colourMessageLine("red", ex.Message);
+                HelperLib.colourMessage("red", ex.Message);
             }
-            //Log log = storage.Load(date);
-            HelperLib.colourMessageLine("red", "The following log has been deleted");
-            //log.printLog();
-            //storage.Delete(date);
         }
         
 
@@ -103,10 +100,10 @@ namespace WeightLiftingConsoleApp.Menus{
 
         /* ------------- Input Processing and Validation -------- */
         public static string getTitle(){
-            HelperLib.colourMessage("cyan", "Enter Title: ");
+            HelperLib.colourMessage("cyan", "Enter Title: ", false);
             string ?title = Console.ReadLine();
             if (string.IsNullOrWhiteSpace(title)) {
-                HelperLib.colourMessageLine("red", "Title must not be empty.");
+                HelperLib.colourMessage("red", "Title must not be empty.");
                 return getTitle();
             }
             else{
@@ -115,11 +112,11 @@ namespace WeightLiftingConsoleApp.Menus{
         }
         public static DateTime getDate(){
             try{
-                HelperLib.colourMessage("cyan", "Enter Date(dd/mm/yyyy): ");
+                HelperLib.colourMessage("cyan", "Enter Date(dd/mm/yyyy): ", false);
                 DateTime date = DateTime.ParseExact(Console.ReadLine(), "dd/MM/yyyy", null);
                 return date;
             } catch(Exception){
-                HelperLib.colourMessageLine("red", "Invalid date format.");
+                HelperLib.colourMessage("red", "Invalid date format.");
                 return getDate();
             } 
         }
@@ -128,18 +125,18 @@ namespace WeightLiftingConsoleApp.Menus{
                 int index;
                 while (true){
                     try{
-                        HelperLib.colourMessage("cyan", "Enter No. Exercises: ");
+                        HelperLib.colourMessage("cyan", "Enter No. Exercises: ", false);
                         index = int.Parse(Console.ReadLine());
                         break;
                     }catch (Exception){
-                        HelperLib.colourMessageLine("red", "Invalid number format.");
+                        HelperLib.colourMessage("red", "Invalid number format.");
                     }
 
                 }
                 for (int i = 0; i <index; i++){
                     while (true){
                         try{
-                            HelperLib.colourMessage("cyan", "Enter Name, Weights, Sets, Reps: ");
+                            HelperLib.colourMessage("cyan", "Enter Name, Weights, Sets, Reps: ", false);
                             string[] values = Console.ReadLine().Split(',');
                             if (values.Length != 4) {
                                 throw new FormatException("Invalid input format.");
@@ -148,9 +145,9 @@ namespace WeightLiftingConsoleApp.Menus{
                             exercises.Add(newExercise);
                             break;        
                         }catch (FormatException ex){
-                            HelperLib.colourMessageLine("red", ex.Message);
+                            HelperLib.colourMessage("red", ex.Message);
                         }catch (Exception){
-                            HelperLib.colourMessageLine("red", "Incorrect exercise format.");
+                            HelperLib.colourMessage("red", "Incorrect exercise format.");
                         }
                     }
                 }
